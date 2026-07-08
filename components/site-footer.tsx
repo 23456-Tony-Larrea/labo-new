@@ -35,10 +35,14 @@ function IconYoutube({ className }: { className?: string }) {
   )
 }
 
-const Instagram = IconInstagram
-const Facebook = IconFacebook
-const Linkedin = IconLinkedin
-const Youtube = IconYoutube
+function IconWhatsApp({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.305A9.956 9.956 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.958 7.958 0 0 1-4.064-1.114l-.292-.173-3.01.789.805-2.934-.19-.301A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z" />
+    </svg>
+  )
+}
 
 const COLUMNS = [
   {
@@ -58,27 +62,31 @@ const COLUMNS = [
 ]
 
 const SOCIAL = [
-  { icon: Instagram, label: 'Instagram' },
-  { icon: Facebook, label: 'Facebook' },
-  { icon: Linkedin, label: 'LinkedIn' },
-  { icon: Youtube, label: 'YouTube' },
+  { icon: IconInstagram, label: 'Instagram' },
+  { icon: IconFacebook, label: 'Facebook' },
+  { icon: IconLinkedin, label: 'LinkedIn' },
+  { icon: IconYoutube, label: 'YouTube' },
+  { icon: IconWhatsApp, label: 'WhatsApp' },
 ]
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-secondary">
+    <footer className="border-t border-border bg-[#f0efed]">
       <div className="container-labo grid grid-cols-1 gap-10 py-14 md:grid-cols-3 md:py-16">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           <LaboLogo className="text-3xl" tagline />
-          <div className="flex items-center gap-4">
+          <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">
+            Dermocosmética suiza con tecnología transdérmica patentada. No injections, yes transdermic technology®
+          </p>
+          <div className="flex items-center gap-3">
             {SOCIAL.map(({ icon: Icon, label }) => (
               <a
                 key={label}
                 href="#"
                 aria-label={label}
-                className="text-foreground/70 transition-colors hover:text-brand"
+                className="flex size-8 items-center justify-center rounded-full border border-border bg-background text-foreground/60 transition-colors hover:border-brand hover:text-brand"
               >
-                <Icon className="size-5" />
+                <Icon className="size-4" />
               </a>
             ))}
           </div>
@@ -86,10 +94,10 @@ export function SiteFooter() {
 
         {COLUMNS.map((col) => (
           <div key={col.title} className="flex flex-col gap-4">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">
+            <h3 className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-foreground">
               {col.title}
             </h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2.5">
               {col.links.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -106,7 +114,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container-labo flex flex-col items-center justify-between gap-2 py-6 text-xs text-muted-foreground md:flex-row">
+        <div className="container-labo flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Labo Suisse Chile. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-brand">Política de privacidad</a>

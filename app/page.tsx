@@ -1,57 +1,43 @@
 import Image from 'next/image'
-import { CtaLink, Eyebrow, Stat } from '@/components/labo-ui'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { HeroSlider } from '@/components/hero-slider'
+
+function OutlineLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center gap-2 border border-foreground px-5 py-2.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-foreground transition-colors hover:border-brand hover:text-brand"
+    >
+      {children} <ArrowRight className="size-3" />
+    </Link>
+  )
+}
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-[78vh] items-center overflow-hidden bg-secondary">
-        <Image
-          src="/images/hero-transdermic.png"
-          alt="Ampollas de sérum y tratamiento transdérmico Labo Suisse"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/40 to-transparent" />
-        <div className="container-labo relative">
-          <div className="max-w-xl">
-            <Eyebrow>No injections, yes transdermic technology®</Eyebrow>
-            <h1 className="mt-5 text-balance text-4xl font-semibold uppercase leading-[1.05] tracking-[0.02em] md:text-6xl">
-              Belleza sin agujas, resultados sin arrugas
-            </h1>
-            <p className="mt-6 max-w-md text-pretty leading-relaxed text-muted-foreground">
-              Dermocosmética suiza de vanguardia. Innovación patentada que transforma tu piel y tu
-              cabello con la fuerza de la tecnología transdérmica.
-            </p>
-            <div className="mt-8">
-              <CtaLink href="/tecnologia-transdermica">Ver más</CtaLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
-      {/* Efficacy */}
-      <section className="border-b border-border py-20 md:py-28">
-        <div className="container-labo grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div>
-            <Eyebrow>Eficacia comprobada</Eyebrow>
-            <h2 className="mt-4 text-balance text-3xl font-semibold uppercase leading-tight tracking-[0.04em] md:text-4xl">
-              Bellezas sin agujas, resultados sin arrugas
-            </h2>
-            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
-              Labo siempre está a la vanguardia de las nuevas tendencias en medicina estética,
-              desarrollando productos innovadores patentados capaces de alcanzar los mejores
-              resultados naturales.
+      {/* Efficacy Section */}
+      <section className="bg-[#f0efed] py-16 md:py-20">
+        <div className="container-labo grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+          <div className="max-w-lg">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-foreground">
+              EFICACIA COMPROBADA
             </p>
-            <div className="mt-10 flex flex-wrap gap-10">
-              <Stat value="+30" label="Años de investigación" />
-              <Stat value="50" label="Países con presencia" />
-              <Stat value="216" label="Moléculas activas" />
+            <h2 className="mt-3 text-2xl font-bold uppercase leading-tight tracking-[0.04em] text-foreground md:text-3xl">
+              BELLEZAS SIN AGUJAS,<br />RESULTADOS SIN ARRUGAS
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Labo siempre está a la vanguardia de las nuevas tendencias en medicina estética, desarrollando nuevos productos innovadores patentados capaces de alcanzar los mejores resultados naturales.
+            </p>
+            <div className="mt-6">
+              <OutlineLink href="/tecnologia-transdermica">TECNOLOGÍA TRANSDÉRMICA</OutlineLink>
             </div>
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+          <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
             <Image
               src="/images/skin-closeup.png"
               alt="Piel radiante y firme"
@@ -63,49 +49,70 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Research & innovation */}
-      <section className="bg-foreground py-20 text-background md:py-28">
-        <div className="container-labo grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div className="relative order-2 aspect-[4/3] overflow-hidden md:order-1">
+      {/* Research & Innovation - 3 columns */}
+      <section className="py-16 md:py-20">
+        <div className="container-labo grid grid-cols-1 items-center gap-0 md:grid-cols-3">
+          {/* Left image */}
+          <div className="relative aspect-square overflow-hidden bg-[#f5e8ea]">
             <Image
-              src="/images/research.png"
-              alt="Investigación dermocosmética en laboratorio"
+              src="/images/product-fillerina.png"
+              alt="Fillerina productos"
               fill
-              className="object-cover"
-              sizes="(min-width: 768px) 45vw, 90vw"
+              className="object-contain p-8"
+              sizes="(min-width: 768px) 33vw, 90vw"
             />
           </div>
-          <div className="order-1 md:order-2">
-            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-accent">
-              Tecnología transdérmica
-            </span>
-            <h2 className="mt-4 text-balance text-3xl font-semibold uppercase leading-tight tracking-[0.04em] md:text-4xl">
-              Entre la investigación e innovación
+
+          {/* Center text */}
+          <div className="flex flex-col items-center px-8 py-12 text-center">
+            <h2 className="text-xl font-bold uppercase leading-tight tracking-[0.08em] text-foreground">
+              ENTRE LA INVESTIGACIÓN<br />E INNOVACIÓN
             </h2>
-            <p className="mt-6 max-w-md leading-relaxed text-background/70">
-              Labo ha puesto el foco en la investigación y desarrollo de tecnologías revolucionarias,
-              creando productos dermocosméticos innovadores para el cuidado de la piel y el cabello
-              desde 1986.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Labo ha puesto el foco en la investigación y desarrollo de tecnologías revolucionarias creando así productos dermocosméticos innovadores para el cuidado de la piel y el cabello desde 1986
             </p>
-            <div className="mt-8">
-              <CtaLink href="/descubre-labo" variant="outline" className="border-background text-background hover:border-accent hover:text-accent">
-                Conoce a Labo
-              </CtaLink>
+            <div className="mt-6">
+              <OutlineLink href="/descubre-labo">CONOCE A LABO</OutlineLink>
             </div>
+          </div>
+
+          {/* Right image */}
+          <div className="relative aspect-square overflow-hidden bg-[#f5f0e8]">
+            <Image
+              src="/images/product-crescina.png"
+              alt="Crescina ampollas"
+              fill
+              className="object-contain p-8"
+              sizes="(min-width: 768px) 33vw, 90vw"
+            />
           </div>
         </div>
       </section>
 
       {/* Products */}
-      <section className="py-20 md:py-28">
+      <section className="border-t border-border py-16 md:py-20">
         <div className="container-labo">
-          <h2 className="text-center text-2xl font-semibold uppercase tracking-[0.08em] md:text-3xl">
-            Nuestros productos
+          <h2 className="text-center text-base font-semibold uppercase tracking-[0.2em] text-foreground">
+            NUESTROS PRODUCTOS
           </h2>
 
           {/* Fillerina */}
-          <div className="mt-14 grid grid-cols-1 items-center gap-10 md:grid-cols-2">
-            <div className="relative aspect-square overflow-hidden bg-secondary">
+          <div className="mt-10 grid grid-cols-1 items-center gap-0 md:grid-cols-2">
+            <div className="order-2 px-8 py-10 md:order-1 md:px-16">
+              <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-foreground">
+                FILLERINA PARA ROSTRO Y CUELLO
+              </p>
+              <h3 className="mt-3 text-2xl font-bold uppercase leading-tight tracking-[0.04em] text-foreground">
+                EFECTO RELLENO.<br />SIN INYECCIONES
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Para dar mayor volumen a los pómulos y labios. Primer y único tratamiento de relleno-densificador alternativo a las inyecciones de ácido hialurónico para uso en casa.
+              </p>
+              <div className="mt-6">
+                <OutlineLink href="/cuidado-de-la-piel">SABER MÁS</OutlineLink>
+              </div>
+            </div>
+            <div className="relative order-1 aspect-square overflow-hidden bg-secondary md:order-2">
               <Image
                 src="/images/product-fillerina.png"
                 alt="Fillerina para rostro y cuello"
@@ -114,37 +121,11 @@ export default function HomePage() {
                 sizes="(min-width: 768px) 45vw, 90vw"
               />
             </div>
-            <div>
-              <Eyebrow>Fillerina para rostro y cuello</Eyebrow>
-              <h3 className="mt-4 text-3xl font-semibold uppercase leading-tight tracking-[0.03em]">
-                Efecto relleno. Sin inyecciones
-              </h3>
-              <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-                Primer y único tratamiento de relleno-densificador alternativo a las inyecciones de
-                ácido hialurónico para uso en casa. Para dar mayor volumen a pómulos y labios.
-              </p>
-              <div className="mt-8">
-                <CtaLink href="/cuidado-de-la-piel">Saber más</CtaLink>
-              </div>
-            </div>
           </div>
 
           {/* Crescina */}
-          <div className="mt-16 grid grid-cols-1 items-center gap-10 md:mt-20 md:grid-cols-2">
-            <div className="order-2 md:order-1">
-              <Eyebrow>Crescina · Tratamiento de recrecimiento capilar</Eyebrow>
-              <h3 className="mt-4 text-3xl font-semibold uppercase leading-tight tracking-[0.03em]">
-                Eficacia del 100% en las personas testeadas
-              </h3>
-              <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-                Crescina es un tratamiento dermocosmético que previene y trata el adelgazamiento del
-                cabello estimulando el recrecimiento capilar.
-              </p>
-              <div className="mt-8">
-                <CtaLink href="/cuidado-capilar">Saber más</CtaLink>
-              </div>
-            </div>
-            <div className="relative order-1 aspect-square overflow-hidden bg-secondary md:order-2">
+          <div className="mt-0 grid grid-cols-1 items-center gap-0 md:grid-cols-2">
+            <div className="relative aspect-square overflow-hidden bg-secondary">
               <Image
                 src="/images/product-crescina.png"
                 alt="Crescina tratamiento de recrecimiento capilar"
@@ -152,6 +133,20 @@ export default function HomePage() {
                 className="object-cover"
                 sizes="(min-width: 768px) 45vw, 90vw"
               />
+            </div>
+            <div className="px-8 py-10 md:px-16">
+              <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-foreground">
+                CRESCINA – TRATAMIENTO DE RECRECIMIENTO CAPILAR
+              </p>
+              <h3 className="mt-3 text-2xl font-bold uppercase leading-tight tracking-[0.04em] text-foreground">
+                EFICACIA DEL 100% EN LAS PERSONAS TESTEADAS
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Crescina es un tratamiento dermocosmético que previene y trata el adelgazamiento del cabello estimulando el recrecimiento capilar.
+              </p>
+              <div className="mt-6">
+                <OutlineLink href="/cuidado-capilar">SABER MÁS</OutlineLink>
+              </div>
             </div>
           </div>
         </div>
